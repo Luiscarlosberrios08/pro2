@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SUPER HYPERMEGA Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "custom", media: "all" %>
+    <%= javascript_importmap_tags %>
+</head>
+
+
+  <body>
+    <nav>
+      <% if user_signed_in? %>
+        <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Iniciar sesión', new_user_session_path %>
+      <% end %>
+    </nav>
+
+    <%= yield %>
+
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+  </body>
+</html>
+
